@@ -1,0 +1,57 @@
+version: '3.3'
+services:
+    # Fullstack Go app
+    go_app:
+        container_name: full_app
+        build: .
+        ports: 
+            - 8080:8080
+        restart: on-failure
+        volumes: 
+            - blog:/usr/src/app/
+        depends_on: 
+            - database
+        networks: 
+            - fullstack
+
+    # PostgreSQL database container
+    database:
+        image: "postgres" # use latest official postgres version
+        environment:
+            - POSTGRES_DB=sample_x
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=password
+            - DATABASE_HOST=database
+        ports:
+            - "5432:5432"
+        volumes:
+            - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+        networks: 
+            - fullstack
+
+
+    # pgAdmin container
+    pgAdmin:
+        image: "dpage/pgadmin4"
+        ports: 
+            - "80:80"
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: email
+            PGADMIN_DEFAULT_PASSWORD: password
+        volumes:
+            - pgadmin:/var/lib/pgadmin4
+        depends_on: 
+            - database
+        networks: 
+            - fullstack
+        restart: unless-stopped
+        
+volumes:
+    blog:
+    database-data: # named volumes can be managed easier using docker-compose
+    pgadmin:
+    
+# Networks to be created to facilitate communication between containers
+networks:
+    fullstack:
+      driver: bridge

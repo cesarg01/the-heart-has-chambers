@@ -1,0 +1,237 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+header {
+    /* Photo by Romina Ordóñez from Pexels */
+  background-image: url("/images/pexels-romina-ordóñez-1470824.jpg");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* Needed to position the navbar */
+  position: relative;
+  padding-top: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    font-family: "Playfair Display";
+
+    /*background-color: gray;*/
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: .5rem 0;
+    position: relative;
+}
+
+.nav-links li a::before,
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: crimson;
+    left: 0;
+    transform: scaleX(0);
+    transition: all .5s;
+}
+
+.nav-links li a::before {
+    top: 0;
+    transform-origin: left;
+}
+
+.nav-links li a::after {
+    bottom: 0;
+    transform-origin: right;
+}
+
+.nav-links li a:hover::before,
+.nav-links li a:hover::after {
+    transform: scaleX(1);
+    
+}
+
+
+.page_title {
+    font-size: xx-large;
+    letter-spacing: 5px;
+    
+}
+
+.sub_title {
+    font-size: medium;
+}
+body {
+    background-color: #1d1e22;
+    color: aliceblue;
+    font-family: "Playfair Display";
+}
+
+hr {
+    margin: 20px 0;
+    border: 1px solid #f00;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 75%;
+    padding: 20px;
+}
+
+.leftcolumn .card pre {
+    font-family: "Playfair Display";
+    font-size: 18px;
+
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+
+/* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* Add a card effect for articles */
+.card {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1000px) {
+    .nav-links {
+        width: 25%;
+    }
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Disallow scrolling to the x-axis to keep navigation menu hidden.*/
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 10vh;
+        background-color: #1d1e22;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    /* Display the triple bar font from font-awesome.*/
+    .burger {
+        display: block;
+    }
+}
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+footer {
+    font-size: 36px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    
+}
+
+.github-icon {
+    color: white;
+}
+
+.twitter-icon {
+    color: white;
+}
+
+.ig-icon {
+    color: white
+}
+
+/* Pseudo Classes */
+a:visited {
+    color: white;
+    
+}
+
+a {
+    color: inherit;
+}
+
